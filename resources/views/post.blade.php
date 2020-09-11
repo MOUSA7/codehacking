@@ -75,7 +75,25 @@
 
 
             @if(count($comment->replies)>=0 )
+                <div class="comment-reply-container">
+                    <button class="toggle-reply btn btn-primary pull-right">Reply</button>
+                    <div class="comment-reply">
 
+                        {!! Form::open(['method'=>'POST','action'=>'CommentRepliesController@createreply']) !!}
+
+                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+                        <div class="form-group">
+                            {!! Form::label('body','Comment') !!}
+                            {!! Form::textarea('body',null,['class'=>'form-control','rows'=>1,'style'=>'height: 40px']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::submit('submit',['class'=>'btn btn-primary']) !!}
+                        </div>
+
+                        {!! Form::close() !!}
+                    </div><!--Comment-reply-container div!-->
+                </div><!--Comment-reply div!-->
                 @foreach($comment->replies as $reply)
 
                     @if($reply->is_active ==1)
@@ -88,27 +106,7 @@
                     {{-- {{$post->body}} --}}
                 </div>
             </div>
-                    <div class="comment-reply-container">
-                        <button class="toggle-reply btn btn-primary pull-right">Reply</button>
-                        <div class="comment-reply">
 
-
-
- {!! Form::open(['method'=>'POST','action'=>'CommentRepliesController@createreply']) !!}
-
-      <input type="hidden" name="comment_id" value="{{$comment->id}}">
-
- <div class="form-group">
- {!! Form::label('body','Comment') !!}
- {!! Form::textarea('body',null,['class'=>'form-control','rows'=>1,'style'=>'height: 40px']) !!}
- </div>
- <div class="form-group">
-     {!! Form::submit('submit',['class'=>'btn btn-primary']) !!}
- </div>
-
- {!! Form::close() !!}
-                        </div><!--Comment-reply-container div!-->
-                    </div><!--Comment-reply div!-->
                     @endif
                 @endforeach
                 @endif

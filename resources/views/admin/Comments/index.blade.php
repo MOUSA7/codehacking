@@ -27,7 +27,7 @@
             <td>{{$comment->author}}</td>
             <td>{{$comment->email}}</td>
             <td>{{str_limit($comment->body,40)}}</td>
-            <td><a href="{{route('home.post',$comment->post->id)}}">View Post</a></td>
+            <td><a href="{{route('post',$comment->post->slug)}}">View Post</a></td>
             <td><a href="{{route('admin.Comments.CommentReply.show',$comment->id)}}">View Replies</a></td>
             <td>
                 @if($comment->is_active == 1)
